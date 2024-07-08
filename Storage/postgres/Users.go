@@ -2,6 +2,7 @@ package postgres
 
 import (
 	"database/sql"
+	"log"
 	pb "restaurant/genproto/users"
 	"time"
 )
@@ -69,6 +70,21 @@ func (U *UserRepo) DeleteProfile(userId *pb.UserId) (*pb.Status, error) {
 		userId.UserId)
 	if err != nil {
 		return &pb.Status{Status: false}, err
+	}
+	return &pb.Status{Status: true}, nil
+}
+
+func (u *UserRepo) RegisterUser(req *pb.RegisterUser) (*pb.Status, error) {
+	query := `
+	insert into users(
+		username,password,email,phone_number
+	)values(
+		$1,$2,$3,$4
+	)`
+	_, err := u.Db.Exec(query, req.Username, req.Password, req.Email, req.Phone)
+	if err != nil {
+		log.Fatalf("User registration error: %v", err)
+		return nil, err
 	}
 	return &pb.Status{Status: true}, nil
 }

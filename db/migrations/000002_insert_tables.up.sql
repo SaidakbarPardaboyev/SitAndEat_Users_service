@@ -1,4 +1,4 @@
-insert into users(user_name,password,email,phone_number) values
+insert into users(username,password,email,phone_number) values
 ('aliyevbek', 'Aliyev#2021', 'aliyevbek@gmail.com', '998-90-123-4567'),
 ('sarvarova', 'Sarvar_2022', 'sarvarova@yahoo.com', '998-91-234-5678'),
 ('umarov', 'Umarov@2023', 'umarov@hotmail.com', '998-92-345-6789'),
