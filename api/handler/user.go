@@ -38,7 +38,6 @@ func (h *Handler) Register(ctx *gin.Context) {
 	ctx.JSON(http.StatusAccepted, nil)
 }
 
-
 func (h *Handler) Login(ctx *gin.Context) {
-	
+
 }
