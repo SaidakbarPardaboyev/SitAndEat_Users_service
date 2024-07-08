@@ -8,14 +8,15 @@ import (
 )
 
 type Config struct {
-	DB_HOST     string
-	DB_PORT     string
-	DB_USER     string
-	DB_PASSWORD string
-	DB_NAME     string
-	URL_PORT    string
-}
-
+	HTTP_PORT         string
+	DB_HOST           string
+	DB_PORT           string
+	DB_USER           string
+	DB_PASSWORD       string
+	DB_NAME           string
+	SIGNING_KEY       string
+  }
+  
 func Load() Config{
 	if err := godotenv.Load(); err != nil {
 		log.Print("No .env file found")
@@ -27,7 +28,9 @@ func Load() Config{
 	config.DB_USER = cast.ToString(Coalesce("DB_USER", "postgres"))
 	config.DB_PASSWORD = cast.ToString(Coalesce("DB_PASSWORD", "postgres"))
 	config.DB_NAME = cast.ToString(Coalesce("DB_NAME", "postgres"))
-	config.URL_PORT = cast.ToString(Coalesce("URL_PORT", "8080"))
+	config.HTTP_PORT = cast.ToString(Coalesce("HTTP_PORT", "50051"))
+	config.SIGNING_KEY = cast.ToString(Coalesce("SIGNING_KEY", "secret"))
+
 	return config
 }
 
