@@ -1,2 +1,2 @@
-drop table users;
 drop table refresh_token;
+drop table users;
