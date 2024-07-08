@@ -18,7 +18,7 @@ type Config struct {
   }
   
 func Load() Config{
-	if err := godotenv.Load(); err != nil {
+	if err := godotenv.Load("/home/hamidjon/Desktop/Restaurant/SitAndEat_Users_service/.env"); err != nil {
 		log.Print("No .env file found")
 	}
 	
