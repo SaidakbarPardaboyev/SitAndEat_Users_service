@@ -1,6 +1,6 @@
 create table users(
     id uuid primary key DEFAULT gen_random_uuid() not null,
-    user_name varchar UNIQUE not null,
+    username varchar UNIQUE not null,
     password varchar not null,
     email varchar UNIQUE NOT NULL,
     phone_number varchar UNIQUE not null
