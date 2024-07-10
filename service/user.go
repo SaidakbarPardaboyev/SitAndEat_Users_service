@@ -10,16 +10,15 @@ import (
 
 type UserService struct {
 	pb.UnimplementedUsersServer
-	db   *sql.DB
-	user *postgres.UserRepo
+	User *postgres.UserRepo
 }
 
 func NewUserService(db *sql.DB) *UserService {
-	return &UserService{db: db}
+	return &UserService{User: postgres.NewUserRepo(db)}
 }
 
-func (s *UserService) GetProfile(ctx context.Context, req *pb.UserId) (*pb.GetUser, error) {
-	resp, err := s.user.GetProfile(req)
+func (U *UserService) GetProfile(ctx context.Context, req *pb.UserId) (*pb.GetUser, error) {
+	resp, err := U.User.GetProfile(req)
 	if err != nil {
 		log.Fatalf("Error retrieving user information: %v", err)
 		return nil, err
@@ -28,8 +27,8 @@ func (s *UserService) GetProfile(ctx context.Context, req *pb.UserId) (*pb.GetUs
 	return resp, nil
 }
 
-func (s *UserService) UpdateProfile(ctx context.Context, req *pb.UpdateProf) (*pb.Status, error) {
-	resp, err := s.user.UpdateProfile(req)
+func (U *UserService) UpdateProfile(ctx context.Context, req *pb.UpdateProf) (*pb.Status, error) {
+	resp, err := U.User.UpdateProfile(req)
 	if err != nil {
 		log.Fatalf("Error updating user: %v", err)
 		return nil, err
@@ -37,8 +36,8 @@ func (s *UserService) UpdateProfile(ctx context.Context, req *pb.UpdateProf) (*p
 	return resp, nil
 }
 
-func (s *UserService) DeleteProfile(ctx context.Context, req *pb.UserId) (*pb.Status, error) {
-	resp, err := s.user.DeleteProfile(req)
+func (U *UserService) DeleteProfile(ctx context.Context, req *pb.UserId) (*pb.Status, error) {
+	resp, err := U.User.DeleteProfile(req)
 	if err != nil {
 		log.Fatalf("Error deleting user: %v", err)
 		return nil, err
