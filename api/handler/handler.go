@@ -8,7 +8,7 @@ import (
 )
 
 type Handler struct {
-	logger   slog.Logger
+	logger   *slog.Logger
 	UserRepo *postgres.UserRepo
 }
 
