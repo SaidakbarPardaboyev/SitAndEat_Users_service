@@ -8,7 +8,11 @@ type UserInfo struct {
 }
 
 type RefreshToken struct {
-	UserId     string
-	Token      string
+	UserId    string
+	Token     string
 	ExpiresAt int64
+}
+
+type Error struct {
+	Error string `json:"error"`
 }

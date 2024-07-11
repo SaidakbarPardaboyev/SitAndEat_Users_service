@@ -12,6 +12,16 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+// @Summary Register User
+// @Description to register user in the SitAndEat app
+// @Tags Auth
+// @Accept json
+// @Produce json
+// @Param request body pb.RegisterUser true "email and password required"
+// @Success 202 "Nothing is returned when the user is successfully registered"
+// @Failure 400 {object} models.Error "Parameters user entered are not valid"
+// @Failure 500 {object} models.Error "Error occurs in internal service"
+// @Router /register [post]
 func (h *Handler) Register(ctx *gin.Context) {
 
 	req := pb.RegisterUser{}
@@ -32,7 +42,7 @@ func (h *Handler) Register(ctx *gin.Context) {
 
 	err = h.UserRepo.Register(&req)
 	if err != nil {
-		ctx.AbortWithStatusJSON(http.StatusBadRequest, err)
+		ctx.AbortWithStatusJSON(http.StatusInternalServerError, err)
 		h.logger.Error(err.Error())
 		return
 	}
@@ -40,6 +50,16 @@ func (h *Handler) Register(ctx *gin.Context) {
 	ctx.JSON(http.StatusAccepted, nil)
 }
 
+// @Summary Login User
+// @Description to login user in the SitAndEat app
+// @Tags Auth
+// @Accept json
+// @Produce json
+// @Param Request body pb.LoginUser true "email and password required"
+// @Success 202 {object} pb.Token "access and refresh token are returned when user is successfully logged in"
+// @Failure 400 {object} models.Error "Parameters user entered are not valid"
+// @Failure 500 {object} models.Error "Error occurs in internal service"
+// @Router /login [post]
 func (h *Handler) Login(ctx *gin.Context) {
 	req := pb.LoginUser{}
 
