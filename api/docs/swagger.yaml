@@ -1,0 +1,102 @@
+basePath: /users
+definitions:
+  models.Error:
+    properties:
+      error:
+        type: string
+    type: object
+  users.LoginUser:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  users.RegisterUser:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      username:
+        type: string
+    type: object
+  users.Token:
+    properties:
+      accessToken:
+        type: string
+      refreshToken:
+        type: string
+    type: object
+host: localhost:7777
+info:
+  contact:
+    email: pardaboyevsaidakbar103@gmail.com
+    name: Saidakbar
+    url: http://www.support_me_with_smile
+  description: This is the Auth service of SitandEat project
+  title: Auth Service
+  version: "1.0"
+paths:
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: to login user in the SitAndEat app
+      parameters:
+      - description: email and password required
+        in: body
+        name: Request
+        required: true
+        schema:
+          $ref: '#/definitions/users.LoginUser'
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: access and refresh token are returned when user is successfully
+            logged in
+          schema:
+            $ref: '#/definitions/users.Token'
+        "400":
+          description: Parameters user entered are not valid
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Error occurs in internal service
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Login User
+      tags:
+      - Auth
+  /register:
+    post:
+      consumes:
+      - application/json
+      description: to register user in the SitAndEat app
+      parameters:
+      - description: email and password required
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/users.RegisterUser'
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: Nothing is returned when the user is successfully registered
+        "400":
+          description: Parameters user entered are not valid
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Error occurs in internal service
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Register User
+      tags:
+      - Auth
+swagger: "2.0"

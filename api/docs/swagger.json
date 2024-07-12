@@ -1,0 +1,155 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is the Auth service of SitandEat project",
+        "title": "Auth Service",
+        "contact": {
+            "name": "Saidakbar",
+            "url": "http://www.support_me_with_smile",
+            "email": "pardaboyevsaidakbar103@gmail.com"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:7777",
+    "basePath": "/users",
+    "paths": {
+        "/login": {
+            "post": {
+                "description": "to login user in the SitAndEat app",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login User",
+                "parameters": [
+                    {
+                        "description": "email and password required",
+                        "name": "Request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/users.LoginUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "access and refresh token are returned when user is successfully logged in",
+                        "schema": {
+                            "$ref": "#/definitions/users.Token"
+                        }
+                    },
+                    "400": {
+                        "description": "Parameters user entered are not valid",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Error occurs in internal service",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "description": "to register user in the SitAndEat app",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register User",
+                "parameters": [
+                    {
+                        "description": "email and password required",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/users.RegisterUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Nothing is returned when the user is successfully registered"
+                    },
+                    "400": {
+                        "description": "Parameters user entered are not valid",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Error occurs in internal service",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Error": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "users.LoginUser": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "users.RegisterUser": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "users.Token": {
+            "type": "object",
+            "properties": {
+                "accessToken": {
+                    "type": "string"
+                },
+                "refreshToken": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

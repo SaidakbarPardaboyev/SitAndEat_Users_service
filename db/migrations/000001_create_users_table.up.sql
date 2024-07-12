@@ -7,7 +7,7 @@ create table users(
     phone_number varchar UNIQUE not null,
     created_at timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp DEFAULT CURRENT_TIMESTAMP,
-    deleted_at timestamp DEFAULT CURRENT_TIMESTAMP
+    deleted_at timestamp
 );
 
 create table refresh_token(

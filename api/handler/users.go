@@ -17,7 +17,7 @@ import (
 // @Tags Auth
 // @Accept json
 // @Produce json
-// @Param request body pb.RegisterUser true "email and password required"
+// @Param request body users.RegisterUser true "email and password required"
 // @Success 202 "Nothing is returned when the user is successfully registered"
 // @Failure 400 {object} models.Error "Parameters user entered are not valid"
 // @Failure 500 {object} models.Error "Error occurs in internal service"
@@ -55,8 +55,8 @@ func (h *Handler) Register(ctx *gin.Context) {
 // @Tags Auth
 // @Accept json
 // @Produce json
-// @Param Request body pb.LoginUser true "email and password required"
-// @Success 202 {object} pb.Token "access and refresh token are returned when user is successfully logged in"
+// @Param Request body users.LoginUser true "email and password required"
+// @Success 202 {object} users.Token "access and refresh token are returned when user is successfully logged in"
 // @Failure 400 {object} models.Error "Parameters user entered are not valid"
 // @Failure 500 {object} models.Error "Error occurs in internal service"
 // @Router /login [post]
