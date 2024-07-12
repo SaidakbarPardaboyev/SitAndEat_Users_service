@@ -1,7 +1,0 @@
-time=2024-07-10T18:51:19.637+05:00 level=ERROR msg="Error retrieving user information: pq: relation \"users\" does not exist"
-time=2024-07-10T18:51:27.057+05:00 level=ERROR msg="Error retrieving user information: pq: relation \"users\" does not exist"
-time=2024-07-10T18:51:31.852+05:00 level=ERROR msg="Error retrieving user information: pq: relation \"users\" does not exist"
-time=2024-07-10T18:53:16.993+05:00 level=ERROR msg="Error retrieving user information: pq: relation \"users\" does not exist"
-time=2024-07-10T18:53:17.551+05:00 level=ERROR msg="Error retrieving user information: pq: relation \"users\" does not exist"
-time=2024-07-12T14:41:46.923+05:00 level=ERROR msg="sql: no rows in result set"
-time=2024-07-12T14:41:49.163+05:00 level=ERROR msg="sql: no rows in result set"

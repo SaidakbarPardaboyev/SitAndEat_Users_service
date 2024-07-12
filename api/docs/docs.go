@@ -170,6 +170,8 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "This is the Auth service of SitandEat project",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
+	LeftDelim:        "{{",
+	RightDelim:       "}}",
 }
 
 func init() {

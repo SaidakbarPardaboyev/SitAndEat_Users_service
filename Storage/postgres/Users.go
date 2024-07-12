@@ -17,22 +17,23 @@ func NewUserRepo(db *sql.DB) *UserRepo {
 }
 
 func (u *UserRepo) GetProfile(user *pb.UserId) (*pb.GetUser, error) {
-	resp := pb.GetUser{Id: user.UserId}
-	query := `
-	Select 
-		username, password, email, phone_number, 
-		created_at, updated_at
-	from 
-		users 
-	where 
-		id = $1 and 
-		deleted_at is null`
+    resp := pb.GetUser{Id: user.UserId}
+    query := `
+    SELECT 
+        username, password, email, phone_number, 
+        created_at, updated_at
+    FROM 
+        users 
+    WHERE 
+        id = $1 AND 
+        deleted_at IS NULL
+    `
 
-	err := u.Db.QueryRow(query, user.UserId).Scan(&resp.Username,
-		&resp.Password, &resp.Email, &resp.Phone, &resp.CreatedAt,
-		&resp.UpdatedAt)
+    err := u.Db.QueryRow(query, user.UserId).Scan(&resp.Username,
+        &resp.Password, &resp.Email, &resp.Phone, &resp.CreatedAt,
+        &resp.UpdatedAt)
 
-	return &resp, err
+    return &resp, err
 }
 
 func (u *UserRepo) GetUserByEmail(email string) (*models.UserInfo, error) {

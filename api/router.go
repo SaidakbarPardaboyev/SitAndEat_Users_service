@@ -4,11 +4,11 @@ import (
 	"database/sql"
 	"restaurant/api/handler"
 
+	_ "restaurant/api/docs"
+
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-
-	_ "restaurant/api/docs"
 )
 
 // @title Auth Service
