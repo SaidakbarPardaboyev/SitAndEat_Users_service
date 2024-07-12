@@ -1,0 +1,92 @@
+definitions:
+  users.LoginUser:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  users.RegisterUser:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      username:
+        type: string
+    type: object
+  users.Token:
+    properties:
+      accessToken:
+        type: string
+      refreshToken:
+        type: string
+    type: object
+host: localhost:7777
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Bu foydalanuvchi boshqaruvi uchun namuna serveri.
+  license:
+    name: Apache 2.0
+  title: Foydalanuvchilarni boshqarish APIsi
+  version: "1.0"
+paths:
+  /users/login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticate a user and return JWT token
+      parameters:
+      - description: User login details
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/users.LoginUser'
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/users.Token'
+        "400":
+          description: Bad Request
+          schema: {}
+        "500":
+          description: Internal Server Error
+          schema: {}
+      summary: User login
+      tags:
+      - auth
+  /users/register:
+    post:
+      consumes:
+      - application/json
+      description: Register a new user with the provided details
+      parameters:
+      - description: User registration details
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/users.RegisterUser'
+      produces:
+      - application/json
+      responses:
+        "202":
+          description: Accepted
+        "400":
+          description: Bad Request
+          schema: {}
+      summary: Register a new user
+      tags:
+      - auth
+schemes:
+- http
+swagger: "2.0"

@@ -10,8 +10,8 @@ import (
 )
 
 func GenerateJWT(user *pb.GetUser) *pb.Token {
-	accesstoken := jwt.New(jwt.SigningMethodES256)
-	refreshToken := jwt.New(jwt.SigningMethodES256)
+	accesstoken := jwt.New(jwt.SigningMethodHS256)
+	refreshToken := jwt.New(jwt.SigningMethodHS256)
 
 	accessClaim := accesstoken.Claims.(jwt.MapClaims)
 	accessClaim["user_id"] = user.Id

@@ -12,6 +12,15 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+// @Summary Register a new user
+// @Description Register a new user with the provided details
+// @Tags auth
+// @Accept json
+// @Produce json
+// @Param user body users.RegisterUser true "User registration details"
+// @Success 202 {object} nil
+// @Failure 400 {object} error
+// @Router /users/register [post]
 func (h *Handler) Register(ctx *gin.Context) {
 
 	req := pb.RegisterUser{}
@@ -40,6 +49,16 @@ func (h *Handler) Register(ctx *gin.Context) {
 	ctx.JSON(http.StatusAccepted, nil)
 }
 
+// @Summary User login
+// @Description Authenticate a user and return JWT token
+// @Tags auth
+// @Accept json
+// @Produce json
+// @Param user body users.LoginUser true "User login details"
+// @Success 202 {object} users.Token
+// @Failure 400 {object} error
+// @Failure 500 {object} error
+// @Router /users/login [post]
 func (h *Handler) Login(ctx *gin.Context) {
 	req := pb.LoginUser{}
 
