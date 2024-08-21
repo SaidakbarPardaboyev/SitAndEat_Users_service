@@ -1,4 +1,4 @@
-package main
+package router
 
 import (
 	"log"
@@ -7,7 +7,7 @@ import (
 	"restaurant/config"
 )
 
-func main() {
+func Router() {
 	db, err := postgres.ConnectDB()
 	if err != nil {
 		log.Fatal(err)
