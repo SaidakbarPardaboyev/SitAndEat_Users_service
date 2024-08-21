@@ -5,6 +5,7 @@ import (
 	"log"
 	"net"
 	"restaurant/Storage/postgres"
+	"restaurant/cmd/router"
 	"restaurant/config"
 	pb "restaurant/genproto/users"
 	"restaurant/service"
@@ -27,6 +28,8 @@ func main() {
 	userservice := service.NewUserService(db)
 	service := grpc.NewServer()
 	pb.RegisterUsersServer(service, userservice)
+
+	go router.Router()
 
 	fmt.Printf("Server is listening on port %s\n", config.Load().USER_SERVICE)
 	if err = service.Serve(listener); err != nil {
