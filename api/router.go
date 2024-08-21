@@ -15,11 +15,7 @@ import (
 // @version 1.0
 // @description This is the Auth service of SitandEat project
 
-// @contact.name Saidakbar
-// @contact.url http://www.support_me_with_smile
-// @contact.email pardaboyevsaidakbar103@gmail.com
 
-// @host localhost:7777
 // @BasePath /users
 
 func NewRouter(db *sql.DB) *gin.Engine {

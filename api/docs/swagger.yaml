@@ -30,7 +30,6 @@ definitions:
       refreshToken:
         type: string
     type: object
-host: localhost:7777
 info:
   contact:
     email: pardaboyevsaidakbar103@gmail.com
